@@ -23,6 +23,11 @@
 		76280F622A2A43470095D9B6 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76280F612A2A43470095D9B6 /* MainTabView.swift */; };
 		76280F642A2A43690095D9B6 /* HomeNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76280F632A2A43690095D9B6 /* HomeNewsView.swift */; };
 		76280F662A2A43830095D9B6 /* FavoriteNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76280F652A2A43830095D9B6 /* FavoriteNewsView.swift */; };
+		76280F6C2A2A4AF30095D9B6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76280F6B2A2A4AF30095D9B6 /* Lato-Light.ttf */; };
+		76280F6E2A2A4AFA0095D9B6 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76280F6D2A2A4AFA0095D9B6 /* Lato-Bold.ttf */; };
+		76280F702A2A4B0A0095D9B6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76280F6F2A2A4B0A0095D9B6 /* Lato-Regular.ttf */; };
+		76280F752A2A54110095D9B6 /* HomeNewsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76280F742A2A54110095D9B6 /* HomeNewsRow.swift */; };
+		76280F772A2A6AB10095D9B6 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76280F762A2A6AB10095D9B6 /* NewsDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +48,12 @@
 		76280F612A2A43470095D9B6 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		76280F632A2A43690095D9B6 /* HomeNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsView.swift; sourceTree = "<group>"; };
 		76280F652A2A43830095D9B6 /* FavoriteNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteNewsView.swift; sourceTree = "<group>"; };
+		76280F6B2A2A4AF30095D9B6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		76280F6D2A2A4AFA0095D9B6 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		76280F6F2A2A4B0A0095D9B6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		76280F712A2A4B1F0095D9B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		76280F742A2A54110095D9B6 /* HomeNewsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsRow.swift; sourceTree = "<group>"; };
+		76280F762A2A6AB10095D9B6 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +86,7 @@
 		76280F322A2A3E610095D9B6 /* Newsletter */ = {
 			isa = PBXGroup;
 			children = (
+				76280F712A2A4B1F0095D9B6 /* Info.plist */,
 				76280F602A2A432F0095D9B6 /* App */,
 				76280F412A2A3FB80095D9B6 /* Services */,
 				76280F512A2A40010095D9B6 /* Extentions */,
@@ -84,6 +96,9 @@
 				76280F5F2A2A43280095D9B6 /* Views */,
 				76280F472A2A3FC20095D9B6 /* ViewModels */,
 				76280F372A2A3E620095D9B6 /* Assets.xcassets */,
+				76280F6F2A2A4B0A0095D9B6 /* Lato-Regular.ttf */,
+				76280F6B2A2A4AF30095D9B6 /* Lato-Light.ttf */,
+				76280F6D2A2A4AFA0095D9B6 /* Lato-Bold.ttf */,
 				76280F392A2A3E620095D9B6 /* Preview Content */,
 			);
 			path = Newsletter;
@@ -152,9 +167,8 @@
 		76280F5F2A2A43280095D9B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				76280F612A2A43470095D9B6 /* MainTabView.swift */,
-				76280F632A2A43690095D9B6 /* HomeNewsView.swift */,
-				76280F652A2A43830095D9B6 /* FavoriteNewsView.swift */,
+				76280F672A2A44030095D9B6 /* Core */,
+				76280F682A2A440C0095D9B6 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +179,25 @@
 				76280F332A2A3E610095D9B6 /* NewsletterApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		76280F672A2A44030095D9B6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				76280F612A2A43470095D9B6 /* MainTabView.swift */,
+				76280F632A2A43690095D9B6 /* HomeNewsView.swift */,
+				76280F652A2A43830095D9B6 /* FavoriteNewsView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		76280F682A2A440C0095D9B6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				76280F742A2A54110095D9B6 /* HomeNewsRow.swift */,
+				76280F762A2A6AB10095D9B6 /* NewsDetailView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,8 +258,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76280F6C2A2A4AF30095D9B6 /* Lato-Light.ttf in Resources */,
 				76280F3B2A2A3E620095D9B6 /* Preview Assets.xcassets in Resources */,
+				76280F702A2A4B0A0095D9B6 /* Lato-Regular.ttf in Resources */,
 				76280F382A2A3E620095D9B6 /* Assets.xcassets in Resources */,
+				76280F6E2A2A4AFA0095D9B6 /* Lato-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +280,10 @@
 				76280F582A2A40010095D9B6 /* Color.swift in Sources */,
 				76280F662A2A43830095D9B6 /* FavoriteNewsView.swift in Sources */,
 				76280F492A2A3FC20095D9B6 /* NewsViewModel.swift in Sources */,
+				76280F752A2A54110095D9B6 /* HomeNewsRow.swift in Sources */,
 				76280F4E2A2A3FD20095D9B6 /* Favorites.swift in Sources */,
 				76280F502A2A3FD20095D9B6 /* Article.swift in Sources */,
+				76280F772A2A6AB10095D9B6 /* NewsDetailView.swift in Sources */,
 				76280F622A2A43470095D9B6 /* MainTabView.swift in Sources */,
 				76280F5B2A2A400E0095D9B6 /* Constants.swift in Sources */,
 				76280F4F2A2A3FD20095D9B6 /* News.swift in Sources */,
@@ -382,6 +420,7 @@
 				DEVELOPMENT_TEAM = THGV2QJ4R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Newsletter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -411,6 +450,7 @@
 				DEVELOPMENT_TEAM = THGV2QJ4R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Newsletter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

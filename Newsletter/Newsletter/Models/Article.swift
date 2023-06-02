@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Article: Decodable, Hashable {
+struct Article: Decodable, Identifiable {
     let title: String?
     let description: String?
     let author: String?
@@ -15,6 +15,10 @@ struct Article: Decodable, Hashable {
     let urlToImage: URL?
     let url: URL?
     let content: String?
+    
+    var id: String {
+        return UUID().uuidString
+    }
     
     var date: String {
         let dateFormatter = DateFormatter()
@@ -31,11 +35,11 @@ struct Article: Decodable, Hashable {
         }
     }
     
-    var authorName: String {
-        if let author = author {
-            return author
+    var urlNews: URL {
+        if let url = url {
+            return url
         } else {
-            return "Unknown"
+            return URL(string:"https://www.google.com/")!
         }
     }
 }

@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct NewsletterApp: App {
+    @StateObject private var homeVM = NewsViewModel()
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(Color.generalTheme.purple)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            NavigationView {
+                MainTabView()
+            }
+            .environmentObject(homeVM)
         }
     }
 }
