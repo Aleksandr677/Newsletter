@@ -12,6 +12,9 @@ struct NewsDetailView: View {
     let article: Article
     @State private var hasImage: Bool = true
     @Environment(\.dismiss) private var dismiss
+    @State private var isSaved: Bool = false
+    @State private var showBanner: Bool = false
+    @EnvironmentObject private var homeVM: NewsViewModel
     
     //MARK: - BODY
     var body: some View {
@@ -29,15 +32,9 @@ struct NewsDetailView: View {
                 .offset(y: -8)
             }
         }
-        .overlay(alignment: .topLeading, content: {
-            Button(action: {
-                dismiss.callAsFunction()
-            }, label: {
-                Image(systemName: "chevron.left")
-                    .padding(.leading)
-                    .padding(.top)
-            })
-        })
+        .overlay(alignment: .topLeading, content: { dismissViewButton })
+        .overlay(alignment: .topTrailing, content: { addToFavoriteButton })
+        .overlay(alignment: .top) { banner }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 hasImage = false
@@ -48,8 +45,10 @@ struct NewsDetailView: View {
 
 //MARK: - PREVIEW
 struct NewsDetailView_Previews: PreviewProvider {
+    static let homeViewModel = NewsViewModel()
     static var previews: some View {
         NewsDetailView(article: Constants.article)
+            .environmentObject(homeViewModel)
     }
 }
 
@@ -146,5 +145,54 @@ extension NewsDetailView {
         .cornerRadius(10)
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.vertical)
+    }
+    
+    private var banner: some View {
+        Text("Saved")
+            .modifier(FontModifier(fontName: Constants.latoBold, fontSize: 17))
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
+            .foregroundColor(Color.generalTheme.purple)
+            .background(Color.white)
+            .cornerRadius(15)
+            .opacity(showBanner ? 1.0 : 0.0)
+            .offset(y: showBanner ? 5 : -100)
+    }
+    
+    private var addToFavoriteButton: some View {
+        Button(action: {
+            withAnimation(.easeInOut(duration: 0.25)) {
+                isSaved.toggle()
+                homeVM.saveNewsToFavorite(article: article)
+                if isSaved {
+                    showBanner = true
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    if showBanner {
+                        showBanner = false
+                    }
+                }
+            }
+        },
+               label: {
+            Image(systemName: isSaved ? "heart.fill" : "heart")
+                .padding(7)
+                .background(Circle().stroke(lineWidth: 1.5))
+                .padding(.trailing)
+                .padding(.top, 4)
+        })
+    }
+    
+    private var dismissViewButton: some View {
+        Button(action: {
+            dismiss.callAsFunction()
+        }, label: {
+            Image(systemName: "chevron.left")
+                .padding(8)
+                .background(Circle().stroke(lineWidth: 1.5))
+                .padding(.leading)
+                .padding(.top, 4)
+        })
     }
 }

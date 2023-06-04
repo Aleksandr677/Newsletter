@@ -1,22 +1,22 @@
 //
-//  HomeNewsRow.swift
+//  FavoriteNewsRow.swift
 //  Newsletter
 //
-//  Created by Христиченко Александр on 2023-06-02.
+//  Created by Христиченко Александр on 2023-06-03.
 //
 
 import SwiftUI
 
-struct HomeNewsRow: View {
+struct FavoriteNewsRow: View {
     //MARK: - PROPERTIES
-    let article: Article
     @State private var hasImage: Bool = true
+    let article: FavoriteNewsList
     
     //MARK: - BODY
     var body: some View {
         ZStack {
             background
-            HStack(spacing: 10) {
+            HStack(alignment: .top, spacing: 10) {
                 image
                 texts
             } //HStack
@@ -27,8 +27,6 @@ struct HomeNewsRow: View {
         .background(Color.white)
         .cornerRadius(20)
         .shadow(color: Color.generalTheme.purple.opacity(0.2), radius: 15, x: 0, y: 0)
-        .padding(.horizontal)
-        .padding(.vertical)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 hasImage = false
@@ -38,21 +36,22 @@ struct HomeNewsRow: View {
 }
 
 //MARK: - PREVIEW
-struct HomeNewsRow_Previews: PreviewProvider {
+struct FavoriteNewsRow_Previews: PreviewProvider {
+    static let homeViewModel = NewsViewModel()
     static var previews: some View {
-        HomeNewsRow(article: Constants.article)
+        FavoriteNewsRow(article: FavoriteNewsList())
+            .environmentObject(homeViewModel)
     }
 }
 
 //MARK: - COMPONENTS
-extension HomeNewsRow {
-    
+extension FavoriteNewsRow {
     private var background: some View {
         Color.generalTheme.background.opacity(0.35)
     }
     
     private var image: some View {
-        AsyncImage(url: article.urlToImage) { image in
+        AsyncImage(url: URL(string: article.newsImage)) { image in
             image
                 .resizable()
                 .aspectRatio(1, contentMode: .fit)
@@ -74,6 +73,7 @@ extension HomeNewsRow {
         }
         .cornerRadius(5)
         .padding(.leading)
+        .frame(maxHeight: .infinity, alignment: .center)
     }
     
     private var texts: some View {
@@ -81,30 +81,38 @@ extension HomeNewsRow {
             (Text("Title:  ")
                 .foregroundColor(.gray)
                 .fontWeight(.regular)
-            + Text(article.title ?? "Unknown"))
+            + Text(article.newsTitle))
                 .modifier(FontModifier(fontName: Constants.latoBold, fontSize: 15))
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
                 .foregroundColor(.black)
-             
             (Text("Source:  ")
                 .foregroundColor(.gray)
                 .fontWeight(.regular)
-            + Text("\(article.author ?? "Unknown")"))
+            + Text("\(article.newsAuthor)"))
                 .modifier(FontModifier(fontName: Constants.latoBold, fontSize: 14))
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
                 .foregroundColor(.black)
-            
-            (Text("Time:  ")
-                .foregroundColor(.gray)
-                .fontWeight(.regular)
-            + Text("\(article.date)"))
-                .modifier(FontModifier(fontName: Constants.latoBold, fontSize: 12))
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
-                .foregroundColor(.black)
         }
-        .frame(maxHeight: .infinity, alignment: .center)
+        .padding(.vertical)
+        .frame(maxHeight: .infinity, alignment: .leading)
+    }
+    
+    private var deleteButton: some View {
+        HStack {
+            Divider()
+            Button(action: {
+                
+            }, label: {
+                Image(systemName: "trash")
+                    .padding(8)
+                    .background(Circle().stroke(lineWidth: 1.5))
+                    .padding(.leading, 4)
+                    .padding(.trailing, 12)
+                    .foregroundColor(Color.generalTheme.purple)
+            })
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }

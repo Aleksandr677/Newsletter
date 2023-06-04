@@ -13,6 +13,7 @@ struct NewsletterApp: App {
     
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color.generalTheme.purple)
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path) //only for development
     }
     
     var body: some Scene {

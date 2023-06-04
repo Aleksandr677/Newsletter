@@ -16,8 +16,12 @@ struct HomeNewsView: View {
         ZStack(alignment: .top) {
             background
             VStack {
-                title
-                articles
+                if homeVM.articles.count == 0 {
+                    loaderView
+                } else {
+                    title
+                    articles
+                }
             }
         }
         .onAppear {
@@ -62,5 +66,15 @@ extension HomeNewsView {
             }
         }
         .offset(y: -8)
+    }
+    
+    private var loaderView: some View {
+        VStack(spacing: 8) {
+            ProgressView()
+            Text("Loading...")
+                .modifier(FontModifier(fontName: Constants.latoRegular, fontSize: 10))
+        }
+        .foregroundColor(Color.generalTheme.purple)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }
